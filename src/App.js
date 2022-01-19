@@ -1,41 +1,63 @@
 import logo from "./logo.svg";
-import { EyeIcon, GlobeAltIcon, ScaleIcon, LightningBoltIcon, AnnotationIcon } from "@heroicons/react/outline";
+import {
+  EyeIcon,
+  GlobeAltIcon,
+  ScaleIcon,
+  LightningBoltIcon,
+  CogIcon,
+  CakeIcon,
+} from "@heroicons/react/outline";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import "./App.css";
 
 function App() {
+  const [count1, setCount1] = useState(randomIntFromInterval(1, 3));
+  const [count2, setCount2] = useState(randomIntFromInterval(1, 3));
+  const [count3, setCount3] = useState(randomIntFromInterval(1, 3));
+  const [count4, setCount4] = useState(randomIntFromInterval(1, 3));
+  const [count5, setCount5] = useState(randomIntFromInterval(1, 3));
+
+  const [clicked1, setClicked1] = useState(false);
+  const [clicked2, setClicked2] = useState(false);
+  const [clicked3, setClicked3] = useState(false);
+  const [clicked4, setClicked4] = useState(false);
+  const [clicked5, setClicked5] = useState(false);
+
+  function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
   const features = [
     {
-      name: 'Competitive exchange rates',
+      name: "Hoe het spel werkt",
       description:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+        "Na een druk op een knop, 5 random cijfers te zien krijgen die elk een waardevhebben tussen 1 en 4",
       icon: GlobeAltIcon,
     },
     {
-      name: 'No hidden fees',
-      description:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      name: "Regels",
+      description: "Geen regels.",
       icon: ScaleIcon,
     },
     {
-      name: 'Transfers are instant',
+      name: "Puntengeving",
       description:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+        "5 dezelfde cijfers: Gewonnen (5pt), 4 dezelfde cijfers: Gewonnen (4pt), 2-3 dezelfde cijfers: Gewonnen (2-3pt), <2 dezelfde cijfers: Verloren (-2pt), ",
       icon: LightningBoltIcon,
     },
     {
-      name: 'Mobile notifications',
+      name: "Technische details",
       description:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-      icon: AnnotationIcon,
+        "Cijfers worden gegenereerd door Math.floor() functie in Javascript",
+      icon: CogIcon,
     },
-  ]
+  ];
 
-
-
+  console.log(count1, count2, count3, count4, count5);
 
   return (
-    <div className="bg-slate-600">
+    <div className="bg-slate-600 select-none">
       <header className="p-3 bg-indigo-700 flex text-white justify-between items-center">
         <h2 className="text-xl font-semibold">Gok Spelletje</h2>
         <a
@@ -58,8 +80,7 @@ function App() {
                 Gemaakt door Ray Orolé
               </p>
               <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-                Lorem ipsum dolor sit amet consect adipisicing elit. Possimus
-                magnam voluptatum cupiditate veritatis in accusamus quisquam.
+                Hoe het spel werkt en wat de spelregels zijn lees je hieronder
               </p>
             </div>
 
@@ -85,6 +106,53 @@ function App() {
           </div>
         </div>
       </main>
+      <div className="bg-neutral-100 p-24 text-center">
+        <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
+          Speel nu
+        </h2>
+        <div className="grid gap-5 grid-cols-5 grid-rows-1 my-10">
+          <motion.div
+            whileTap={{ scale: 0.8 }}
+            onClick={() => setClicked1(!clicked1)}
+            className=" bg-indigo-600 hover:bg-indigo-500 h-52 flex justify-center items-center rounded-xl flip">
+              {
+                clicked1 ? <CakeIcon className="h-16 w-16 text-white" /> : ''
+              }
+          </motion.div>
+          <motion.div
+            whileTap={{ scale: 0.8 }}
+            onClick={() => setClicked2(!clicked2)}
+            className=" bg-indigo-600 hover:bg-indigo-500 h-52 flex justify-center items-center rounded-xl flip">
+              {
+                clicked2 ? <CakeIcon className="h-16 w-16 text-white" /> : ''
+              }
+          </motion.div>
+          <motion.div
+            whileTap={{ scale: 0.8 }}
+            onClick={() => setClicked3(!clicked3)}
+            className=" bg-indigo-600 hover:bg-indigo-500 h-52 flex justify-center items-center rounded-xl flip">
+              {
+                clicked3 ? <CakeIcon className="h-16 w-16 text-white" /> : ''
+              }
+          </motion.div>
+          <motion.div
+            whileTap={{ scale: 0.8 }}
+            onClick={() => setClicked4(!clicked4)}
+            className=" bg-indigo-600 hover:bg-indigo-500 h-52 flex justify-center items-center rounded-xl flip">
+              {
+                clicked4 ? <CakeIcon className="h-16 w-16 text-white" /> : ''
+              }
+          </motion.div>
+          <motion.div
+            whileTap={{ scale: 0.8 }}
+            onClick={() => setClicked5(!clicked1)}
+            className=" bg-indigo-600 hover:bg-indigo-500 h-52 flex justify-center items-center rounded-xl flip">
+              {
+                clicked5 ? <CakeIcon className="h-16 w-16 text-white" /> : ''
+              }
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
